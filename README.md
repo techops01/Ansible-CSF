@@ -1,5 +1,5 @@
 # Ansible playbook (csf)
-
+<br>
 #Если есть другой файрвол  - отключаем
 systemctl stop firewalld && systemctl disable firewalld
 
@@ -28,3 +28,4 @@ exe:/opt/pgpro/1c-13/bin/postgres
 exe:/opt/1cv8/x86_64/8.3.19.1150/ragent
 exe:/opt/1cv8/x86_64/8.3.19.1150/rmngr
 exe:/opt/1cv8/x86_64/8.3.19.1150/rphost
+</br>
