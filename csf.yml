@@ -1,0 +1,40 @@
+---
+- name: "Install CSF Firewall"
+  hosts: all
+  become: yes
+  tasks:
+     
+    - name: 'Download CSF package'
+      get_url:
+        url: https://download.configserver.com/csf.tgz 
+        dest: /usr/src/csf.tgz
+        mode: 0755
+        force: yes
+        validate_certs: false
+
+    - name: 'Extracting CSF package'
+      unarchive:
+        src: /usr/src/csf.tgz
+        dest: /usr/src/
+        remote_src: yes
+
+    - name: 'Executing CSF install script'
+      shell:
+        cmd: sh install.sh
+        chdir: /usr/src/csf/
+
+    - name: 'Disabling TESTING mode'
+      lineinfile:
+        path: /etc/csf/csf.conf
+        regexp: '^TESTING ='
+        line: TESTING = "0" 
+
+    - name: "Restarting CSF"
+      service:
+        name: csf
+        state: restarted
+
+    - name: "Restarting LFD"
+      service:
+        name: lfd
+        state: restarted
