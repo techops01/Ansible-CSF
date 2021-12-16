@@ -1,9 +1,11 @@
 # Ansible playbook (csf)
 <br>
 #Если есть другой файрвол  - отключаем
+
 systemctl stop firewalld && systemctl disable firewalld
 
 #Устанавливаем:
+
 yum install perl-libwww-perl -y или apt install libwww-perl -y
 
 cd /usr/src
@@ -12,9 +14,11 @@ cd csf
 sh install.sh
 
 #Tестируем:
+
 perl /usr/local/csf/bin/csftest.pl
 
 #Перезепустим и протестируем:
+
 systemctl restart {csf,lfd}
 systemctl enable {csf,lfd}
 systemctl is-active {csf,lfd}
